@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+src/nowpayments-python/__init__.py
+src/nowpayments-python/nowpayments-python.py
+src/nowpayments_python.egg-info/PKG-INFO
+src/nowpayments_python.egg-info/SOURCES.txt
+src/nowpayments_python.egg-info/dependency_links.txt
+src/nowpayments_python.egg-info/top_level.txt
