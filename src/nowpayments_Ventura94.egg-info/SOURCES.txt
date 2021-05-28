@@ -1,9 +1,0 @@
-README.md
-setup.cfg
-setup.py
-src/nowpayments-python/__init__.py
-src/nowpayments-python/nowpayments-python.py
-src/nowpayments_Ventura94.egg-info/PKG-INFO
-src/nowpayments_Ventura94.egg-info/SOURCES.txt
-src/nowpayments_Ventura94.egg-info/dependency_links.txt
-src/nowpayments_Ventura94.egg-info/top_level.txt
