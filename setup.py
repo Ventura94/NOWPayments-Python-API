@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setuptools.setup(
     name="nowpayments-python",
     version="0.0.1",
-    author="Example Author",
+    author="Arian Ventura Rodrìguez",
     author_email="arianventura94@gmail.com",
     description="NOWPayments python API",
     long_description=long_description,
