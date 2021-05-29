@@ -1,11 +1,11 @@
 Metadata-Version: 2.1
 Name: nowpayments
-Version: 0.0.2
+Version: 0.0.3
 Summary: NOWPayments python API
 Home-page: https://github.com/Ventura94/NOWPayments-Python-API
 Author: Arian Ventura Rodrìguez
 Author-email: arianventura94@gmail.com
-License: UNKNOWN
+License: MIT
 Project-URL: Bug Tracker, https://github.com/Ventura94/NOWPayments-Python-API/issues
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
