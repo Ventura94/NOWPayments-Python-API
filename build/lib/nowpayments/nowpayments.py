@@ -23,7 +23,11 @@ class NOWPayments:
 
     def get_requests(self, url):
         headers = {'x-api-key': self.key}
-        return requests.get(url, headers=headers)
+        return requests.get(url=url, headers=headers)
+
+    def post_requests(self, url, data=None):
+        headers = {'x-api-key': self.key}
+        return requests.post(url=url, headers=headers, data=data)
 
     def get_currencies(self):
         endpoint = "currencies"
@@ -63,7 +67,7 @@ class NOWPayments:
         }
 
         url = self.get_url(endpoint)
-        resp = requests.get(url, data)
+        resp = self.post_requests(url, data=data)
         if resp.status_code == 200:
             return resp.json()
         else:
@@ -86,3 +90,8 @@ class NOWPayments:
             return resp.json()
         else:
             return resp.text
+
+
+pay = NOWPayments(key="RF0Q129-AWN408R-HC9N8CR-CH95SBA")
+pay_dic = pay.get_payment(price_amount="100")
+print(pay_dic)
