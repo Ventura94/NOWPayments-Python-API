@@ -91,7 +91,3 @@ class NOWPayments:
         else:
             return resp.text
 
-
-pay = NOWPayments(key="RF0Q129-AWN408R-HC9N8CR-CH95SBA")
-pay_dic = pay.get_payment(price_amount="100")
-print(pay_dic)
