@@ -21,6 +21,6 @@ payment = NOWPayments("API_KEY")
 
 status = payment.get_status()
 ```
-
+cknckd
 
 
