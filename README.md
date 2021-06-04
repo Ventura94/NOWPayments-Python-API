@@ -9,6 +9,7 @@ The api call descriptions are from the official documentation.
 
 ## Getting Started
 Before using the NOWPayments API, sign up for a [API key here](https://nowpayments.io/).
+
 If you want to use the Sandbox, request your [API key here](https://account.sandbox.nowpayments.io/).
 
 
@@ -27,7 +28,7 @@ status = payment.get_status()
 Sanbox is used in the same way in correspondence with the documentation as follows.
 ```python
 from nowpayments.sandbox import NOWPayments
-payment = NOWPayments("API_KEY")
+payment = NOWPayments("SANDBOX_API_KEY")
 
 status = payment.get_status()
 ```
