@@ -49,7 +49,7 @@ class NOWPayments:
 
     def get_payment(self, price_amount=None, price_currency="usd", pay_amount=None, pay_currency="btc",
                     ipn_callback_url=None, order_id=None, order_description=None, buy_id=None, payout_address=None,
-                    payout_currency=None, payout_extra_id=None, fixed_rate=None):
+                    payout_currency=None, payout_extra_id=None, fixed_rate=None, case=None):
         endpoint = "payment"
         data = {
             "price_amount": price_amount,
@@ -64,6 +64,7 @@ class NOWPayments:
             "payout_currency": payout_currency,
             "payout_extra_id": payout_extra_id,
             "fixed_rate": fixed_rate,
+            "case": case
         }
 
         url = self.get_url(endpoint)
@@ -91,3 +92,11 @@ class NOWPayments:
         else:
             return resp.text
 
+    def get_min_amount(self, currency_from=None, currency_to=None):
+        endpoint = self.MIN_AMOUNT_URL.format(currency_from, currency_to)
+        url = self.get_url(endpoint)
+        resp = requests.get(url)
+        if resp.status_code == 200:
+            return resp.json()
+        else:
+            return resp.text
