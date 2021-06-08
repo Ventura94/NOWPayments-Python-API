@@ -76,7 +76,7 @@ class NOWPayments:
     def get_payment_status(self, payment_id):
         endpoint = "payment/{}".format(payment_id)
         url = self.get_url(endpoint)
-        resp = requests.get(url)
+        resp = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         else:
