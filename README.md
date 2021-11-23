@@ -25,10 +25,10 @@ payment = NOWPayments("API_KEY")
 
 status = payment.get_status()
 ```
-Sanbox is used in the same way in correspondence with the documentation as follows.
+Sandbox is used in the same way in correspondence with the documentation as follows.
 ```python
-from nowpayments.sandbox import NOWPayments
-payment = NOWPayments("SANDBOX_API_KEY")
+from nowpayments import NOWPayments
+payment = NOWPayments("SANDBOX_API_KEY", sandbox=True)
 
 status = payment.get_status()
 ```
