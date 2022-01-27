@@ -22,11 +22,11 @@ class NOWPayments:
             return resp.text
 
     def get_requests(self, url):
-        headers = {'x-api-key': self.key}
+        headers = {"x-api-key": self.key}
         return requests.get(url=url, headers=headers)
 
     def post_requests(self, url, data=None):
-        headers = {'x-api-key': self.key}
+        headers = {"x-api-key": self.key}
         return requests.post(url=url, headers=headers, data=data)
 
     def get_currencies(self):
@@ -47,9 +47,22 @@ class NOWPayments:
         else:
             return resp.text
 
-    def get_payment(self, price_amount=None, price_currency="usd", pay_amount=None, pay_currency="btc",
-                    ipn_callback_url=None, order_id=None, order_description=None, buy_id=None, payout_address=None,
-                    payout_currency=None, payout_extra_id=None, fixed_rate=None, case=None):
+    def get_payment(
+        self,
+        price_amount=None,
+        price_currency="usd",
+        pay_amount=None,
+        pay_currency="btc",
+        ipn_callback_url=None,
+        order_id=None,
+        order_description=None,
+        buy_id=None,
+        payout_address=None,
+        payout_currency=None,
+        payout_extra_id=None,
+        fixed_rate=None,
+        case=None,
+    ):
         endpoint = "payment"
         data = {
             "price_amount": price_amount,
@@ -64,7 +77,7 @@ class NOWPayments:
             "payout_currency": payout_currency,
             "payout_extra_id": payout_extra_id,
             "fixed_rate": fixed_rate,
-            "case": case
+            "case": case,
         }
 
         url = self.get_url(endpoint)
