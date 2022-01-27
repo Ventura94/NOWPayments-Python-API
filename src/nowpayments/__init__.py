@@ -1,21 +1,7 @@
 import requests
 from requests import Response
 
-"""
-       Returns aggregated open, high, low, close, and volume information for Nomics currencies. 
-       If only currency is provided then OHLCV values are returned in USD. 
-       If both exchange and market are provided, then Exchange OHLCV candles are returned. 
-       If both base and quote are provided, then aggregated OHLCV candles are returned.
-       :param  str interval:   Time interval of the candle
-       :param  str currency:   Currency 
-       :param  str base:       Base currency of the pair 
-       :param  str quote:      Quote currency of the pair   
-       :param  str exchange:   Exchange ID 
-       :param  str market:     The Exchange's Market ID
-       :param  str start:      Start time of the interval in RFC3339 format
-       :param  str end:        End time of the interval in RFC3339 format.
-       :param  str format:     Format of the response. Defaults to JSON when blank.   
-       """
+
 
 
 class NOWPayments:
