@@ -2,8 +2,6 @@ import requests
 from requests import Response
 
 
-
-
 class NOWPayments:
     API_URL: str = "https://api.nowpayments.io/v1/{}"
     ESTIMATE_AMOUNT_URL: str = "estimate?amount={}&currency_from={}&currency_to={}"
@@ -21,8 +19,7 @@ class NOWPayments:
         resp: Response = requests.get(url)
         if resp.status_code == 200:
             return resp.json()
-        else:
-            return resp.text
+        return resp.text
 
     def get_requests(self, url: str) -> Response:
         headers: dict = {"x-api-key": self.key}
@@ -38,11 +35,10 @@ class NOWPayments:
         resp: Response = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
-        else:
-            return resp.text
+        return resp.text
 
     def get_estimate_amount(
-        self, amount: float = None, currency_from: str = "usd", currency_to: str = "btc"
+            self, amount: float = None, currency_from: str = "usd", currency_to: str = "btc"
     ) -> str:
         endpoint: str = self.ESTIMATE_AMOUNT_URL.format(
             amount, currency_from, currency_to
@@ -51,23 +47,22 @@ class NOWPayments:
         resp: Response = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
-        else:
-            return resp.text
+        return resp.text
 
     def get_payment(
-        self,
-        price_amount: float = None,
-        price_currency: str = "usd",
-        pay_amount: float = None,
-        pay_currency: str = "btc",
-        ipn_callback_url: str = None,
-        order_id: int = None,
-        order_description: str = None,
-        buy_id: int = None,
-        payout_address: str = None,
-        payout_currency: float = None,
-        payout_extra_id: int = None,
-        fixed_rate: str = None,
+            self,
+            price_amount: float = None,
+            price_currency: str = "usd",
+            pay_amount: float = None,
+            pay_currency: str = "btc",
+            ipn_callback_url: str = None,
+            order_id: int = None,
+            order_description: str = None,
+            buy_id: int = None,
+            payout_address: str = None,
+            payout_currency: float = None,
+            payout_extra_id: int = None,
+            fixed_rate: str = None,
     ) -> str:
         endpoint: str = "payment"
         data: dict = {
@@ -89,8 +84,7 @@ class NOWPayments:
         resp: Response = self.post_requests(url, data=data)
         if resp.status_code == 200:
             return resp.json()
-        else:
-            return resp.text
+        return resp.text
 
     def get_payment_status(self, payment_id: int) -> str:
         endpoint: str = f"payment/{payment_id}"
@@ -98,8 +92,7 @@ class NOWPayments:
         resp: Response = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
-        else:
-            return resp.text
+        return resp.text
 
     def get_min_amount(self, currency_from: str = None, currency_to: str = None) -> str:
         endpoint: str = self.MIN_AMOUNT_URL.format(currency_from, currency_to)
@@ -107,5 +100,4 @@ class NOWPayments:
         resp: Response = requests.get(url)
         if resp.status_code == 200:
             return resp.json()
-        else:
-            return resp.text
+        return resp.text
