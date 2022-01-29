@@ -1,8 +1,12 @@
 # NOWPayments-Python-API
 
 [![CodeQL](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/codeql-analysis.yml)
-[![Upload Python Package](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/python-publish.yml/badge.svg)](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/python-publish.yml)
 [![Pylint](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/pylint.yml/badge.svg)](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/pylint.yml)
+[![Python application](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/python-app.yml/badge.svg)](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/python-app.yml)
+[![Python package](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/python-package.yml/badge.svg)](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/python-package.yml)
+[![Upload Python Package](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/python-publish.yml/badge.svg)](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/python-publish.yml)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 A Python wrapper for the [NOWPaiments API](https://documenter.getpostman.com/view/7907941/S1a32n38?version=latest). 
 
 The api call descriptions are from the official documentation.
