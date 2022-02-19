@@ -70,7 +70,7 @@ class NOWPayments:
         """
         endpoint: str = "currencies"
         url: str = self.get_url(endpoint)
-        resp: Response = requests.get(url)
+        resp: Response = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         return resp.text
