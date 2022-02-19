@@ -31,7 +31,7 @@ status = payment.get_status()
 ```
 Sanbox is used in the same way in correspondence with the documentation as follows.
 ```python
-from nowpayments.sandbox import NOWPayments
+from nowpayments.sandbox import NOWPaymentsSandbox
 payment = NOWPayments("SANDBOX_API_KEY")
 
 status = payment.get_status()
