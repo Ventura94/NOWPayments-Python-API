@@ -12,9 +12,9 @@ class NOWPayments:
     Class to used for the NOWPaiments API.
     """
 
-    API_URL: str = "https://api.nowpayments.io/v1/{}"
-    ESTIMATE_AMOUNT_URL: str = "estimate?amount={}&currency_from={}&currency_to={}"
-    MIN_AMOUNT_URL: str = "min-amount?currency_from={}&currency_to={}"
+    API_URL = "https://api.nowpayments.io/v1/{}"
+    ESTIMATE_AMOUNT_URL = "estimate?amount={}&currency_from={}&currency_to={}"
+    MIN_AMOUNT_URL = "min-amount?currency_from={}&currency_to={}"
 
     def __init__(self, key: str) -> None:
         """
@@ -22,7 +22,7 @@ class NOWPayments:
 
         :param str key: API key
         """
-        self.key: str = key
+        self.key = key
 
     def get_url(self, endpoint: str) -> str:
         """
@@ -38,7 +38,7 @@ class NOWPayments:
 
         :param str url: URL to which the request is made
         """
-        headers: dict = {"x-api-key": self.key}
+        headers = {"x-api-key": self.key}
         return requests.get(url=url, headers=headers)
 
     def post_requests(self, url: str, data: dict = None) -> Response:
@@ -48,7 +48,7 @@ class NOWPayments:
         :param url: URL to which the request is made
         :param data: Data to which the request is made
         """
-        headers: dict = {"x-api-key": self.key}
+        headers = {"x-api-key": self.key}
         return requests.post(url=url, headers=headers, data=data)
 
     def get_api_status(self) -> Any:
@@ -56,9 +56,9 @@ class NOWPayments:
         This is a method to get information about the current state of the API. If everything
         is OK, you will receive an "OK" message. Otherwise, you'll see some error.
         """
-        endpoint: str = "status"
-        url: str = self.get_url(endpoint)
-        resp: Response = requests.get(url)
+        endpoint = "status"
+        url = self.get_url(endpoint)
+        resp = requests.get(url)
         if resp.status_code == 200:
             return resp.json()
         return resp.text
@@ -68,9 +68,9 @@ class NOWPayments:
         This is a method for obtaining information about all cryptocurrencies available for
         payments.
         """
-        endpoint: str = "currencies"
-        url: str = self.get_url(endpoint)
-        resp: Response = self.get_requests(url)
+        endpoint = "currencies"
+        url = self.get_url(endpoint)
+        resp = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         return resp.text
@@ -81,15 +81,15 @@ class NOWPayments:
          for payments. Shows the coins you set as available for payments in the "coins settings"
           tab on your personal account.
         """
-        endpoint: str = "merchant/coins"
-        url: str = self.get_url(endpoint)
-        resp: Response = self.get_requests(url)
+        endpoint = "merchant/coins"
+        url = self.get_url(endpoint)
+        resp = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         return resp.text
 
     def get_estimate_price(
-        self, amount: float, currency_from: str, currency_to: str
+            self, amount: float, currency_from: str, currency_to: str
     ) -> Any:
         """This is a method for calculating the approximate price in cryptocurrency
         for a given value in Fiat currency. You will need to provide the initial cost
@@ -103,17 +103,17 @@ class NOWPayments:
 
          :param  str currency_to: Cryptocurrency.
         """
-        endpoint: str = self.ESTIMATE_AMOUNT_URL.format(
+        endpoint = self.ESTIMATE_AMOUNT_URL.format(
             amount, currency_from, currency_to
         )
-        url: str = self.get_url(endpoint)
+        url = self.get_url(endpoint)
         resp: Response = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         return resp.text
 
     def create_payment(
-        self, price_amount: float, price_currency: str, pay_currency: str, **kwargs: Any
+            self, price_amount: float, price_currency: str, pay_currency: str, **kwargs: Any
     ) -> Any:
         """
         With this method, your customer will be able to complete the payment without leaving
@@ -143,8 +143,8 @@ class NOWPayments:
 
         :param bool fixed_rate: Required for fixed-rate exchanges.
         """
-        endpoint: str = "payment"
-        data: dict = {
+        endpoint = "payment"
+        data = {
             "price_amount": price_amount,
             "price_currency": price_currency,
             "pay_amount": None,
@@ -162,8 +162,8 @@ class NOWPayments:
         if len(data) != 12:
             raise TypeError("create_payment() got an unexpected keyword argument")
 
-        url: str = self.get_url(endpoint)
-        resp: Response = self.post_requests(url, data=data)
+        url = self.get_url(endpoint)
+        resp = self.post_requests(url, data=data)
         if resp.status_code == 200:
             return resp.json()
         return resp.text
@@ -174,15 +174,15 @@ class NOWPayments:
 
         :param int payment_id: ID of the payment in the request.
         """
-        endpoint: str = f"payment/{payment_id}"
-        url: str = self.get_url(endpoint)
+        endpoint = f"payment/{payment_id}"
+        url = self.get_url(endpoint)
         resp: Response = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         return resp.text
 
     def get_minimum_payment_amount(
-        self, currency_from: str, currency_to: str = None
+            self, currency_from: str, currency_to: str = None
     ) -> str:
         """
         Get the minimum payment amount for a specific pair.
@@ -190,9 +190,9 @@ class NOWPayments:
         :param currency_from: Currency from
         :param currency_to: Currency to
         """
-        endpoint: str = self.MIN_AMOUNT_URL.format(currency_from, currency_to)
-        url: str = self.get_url(endpoint)
-        resp: Response = requests.get(url)
+        endpoint = self.MIN_AMOUNT_URL.format(currency_from, currency_to)
+        url = self.get_url(endpoint)
+        resp = requests.get(url)
         if resp.status_code == 200:
             return resp.json()
         return resp.text
