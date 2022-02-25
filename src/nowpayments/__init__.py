@@ -9,7 +9,7 @@ from requests import Response
 
 class NOWPayments:
     """
-    Class to used for the NOWPaiments API.
+    Class to used for the NOWPayments API.
     """
 
     API_URL = "https://api.nowpayments.io/v1/{}"
