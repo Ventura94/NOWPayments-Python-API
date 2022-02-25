@@ -1,5 +1,5 @@
 """
-A Python wrapper for the NOWPaiments API Sandbox.
+A Python wrapper for the NOWPayments API Sandbox.
 """
 from src.nowpayments import NOWPayments
 

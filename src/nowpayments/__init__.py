@@ -1,5 +1,5 @@
 """
-A Python wrapper for the NOWPaiments API.
+A Python wrapper for the NOWPayments API.
 """
 from typing import Any
 
