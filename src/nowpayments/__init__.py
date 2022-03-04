@@ -90,7 +90,7 @@ class NOWPayments:
         return resp.raise_for_status()
 
     def get_estimate_price(
-            self, amount: float, currency_from: str, currency_to: str
+        self, amount: float, currency_from: str, currency_to: str
     ) -> Any:
         """This is a method for calculating the approximate price in cryptocurrency
         for a given value in Fiat currency. You will need to provide the initial cost
@@ -104,9 +104,7 @@ class NOWPayments:
 
          :param  str currency_to: Cryptocurrency.
         """
-        endpoint = self.ESTIMATE_AMOUNT_URL.format(
-            amount, currency_from, currency_to
-        )
+        endpoint = self.ESTIMATE_AMOUNT_URL.format(amount, currency_from, currency_to)
         url = self.get_url(endpoint)
         resp: Response = self.get_requests(url)
         if resp.status_code == 200:
@@ -114,7 +112,7 @@ class NOWPayments:
         return resp.raise_for_status()
 
     def create_payment(
-            self, price_amount: float, price_currency: str, pay_currency: str, **kwargs: Any
+        self, price_amount: float, price_currency: str, pay_currency: str, **kwargs: Any
     ) -> Any:
         """
         With this method, your customer will be able to complete the payment without leaving
@@ -183,7 +181,7 @@ class NOWPayments:
         return resp.raise_for_status()
 
     def get_minimum_payment_amount(
-            self, currency_from: str, currency_to: str = None
+        self, currency_from: str, currency_to: str = None
     ) -> Any:
         """
         Get the minimum payment amount for a specific pair.

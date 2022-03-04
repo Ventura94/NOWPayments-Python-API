@@ -1,7 +1,7 @@
 """
 A Python wrapper for the NOWPayments API Sandbox.
 """
-from src.nowpayments import NOWPayments
+from nowpayments import NOWPayments
 
 
 class NOWPaymentsSandbox(NOWPayments):
