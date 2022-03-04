@@ -12,9 +12,8 @@ def now_payments(self):
 
 
 def test_get_api_status(now_payments):
-    self.assertEqual(now_payments.get_api_status(), {'message': 'OK'})
+    assert now_payments.get_api_status() == {'message': 'OK'}
 
 
 def test_get_available_currencies(now_payments):
-    self.assertEqual(now_payments.get_available_currencies().keys(),
-                     {'currencies': ''}.keys())
+    assert now_payments.get_available_currencies().keys() == {'currencies': ''}.keys()
