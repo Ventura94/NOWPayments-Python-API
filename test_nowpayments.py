@@ -1,6 +1,6 @@
 import os
 import pytest
-from nowpayments import NOWPayments
+from src.nowpayments import NOWPayments
 
 
 @pytest.fixture
