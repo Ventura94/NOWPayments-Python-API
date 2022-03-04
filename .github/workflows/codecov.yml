@@ -3,9 +3,6 @@ on: push
 jobs:
   run:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ "3.8", "3.9", "3.10" ]
     env:
       OS: ubuntu-latest
       PYTHON: '3.9'
@@ -14,19 +11,18 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@master
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.7
       - name: 'generate report'
         env:
           API_KEY: ${{ secrets.API_KEY }}
-#          SANDBOX_API_KEY: ${{ secrets.SANDBOX_API_KEY }}
         run: |
           pip install -r requirements.txt
           pip install coverage
-#          coverage run -m unittest
+          pip install pytest
+          pip install pytest-cov
           coverage run -m pytest
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-#          flags: unittests
-          flags: pytest
+          flags: unittests
           fail_ci_if_error: true
