@@ -3,9 +3,8 @@ import pytest
 from nowpayments import NOWPayments
 
 
-
 @pytest.fixture
-def now_payments(self):
+def now_payments():
     return NOWPayments(
         key=os.environ['API_KEY']
     )
