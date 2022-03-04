@@ -7,7 +7,7 @@
 [![Upload Python Package](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/python-publish.yml/badge.svg)](https://github.com/Ventura94/NOWPayments-Python-API/actions/workflows/python-publish.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-A Python wrapper for the [NOWPaiments API](https://documenter.getpostman.com/view/7907941/S1a32n38?version=latest). 
+A Python wrapper for the [NOWPayments API](https://documenter.getpostman.com/view/7907941/S1a32n38?version=latest). 
 
 The api call descriptions are from the official documentation.
 
@@ -29,7 +29,7 @@ payment = NOWPayments("API_KEY")
 
 status = payment.get_status()
 ```
-Sanbox is used in the same way in correspondence with the documentation as follows.
+Sandbox is used in the same way in correspondence with the documentation as follows.
 ```python
 from nowpayments.sandbox import NOWPaymentsSandbox
 payment = NOWPaymentsSandbox("SANDBOX_API_KEY")

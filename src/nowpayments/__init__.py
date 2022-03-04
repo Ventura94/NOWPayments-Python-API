@@ -61,7 +61,7 @@ class NOWPayments:
         resp = requests.get(url)
         if resp.status_code == 200:
             return resp.json()
-        return resp.text
+        return resp.raise_for_status()
 
     def get_available_currencies(self) -> Any:
         """
@@ -73,7 +73,7 @@ class NOWPayments:
         resp = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
-        return resp.text
+        return resp.raise_for_status()
 
     def get_available_checked_currencies(self) -> Any:
         """
@@ -84,9 +84,10 @@ class NOWPayments:
         endpoint = "merchant/coins"
         url = self.get_url(endpoint)
         resp = self.get_requests(url)
+        print(resp)
         if resp.status_code == 200:
             return resp.json()
-        return resp.text
+        return resp.raise_for_status()
 
     def get_estimate_price(
             self, amount: float, currency_from: str, currency_to: str
@@ -110,7 +111,7 @@ class NOWPayments:
         resp: Response = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
-        return resp.text
+        return resp.raise_for_status()
 
     def create_payment(
             self, price_amount: float, price_currency: str, pay_currency: str, **kwargs: Any
@@ -133,7 +134,7 @@ class NOWPayments:
 
         :param str order_description: Inner store order description.
 
-        :param int purchase_id: Id of purchase for which you want to create aother payment.
+        :param int purchase_id: Id of purchase for which you want to create a other payment.
 
         :param str payout_address: Receive funds on another address.
 
@@ -166,9 +167,9 @@ class NOWPayments:
         resp = self.post_requests(url, data=data)
         if resp.status_code == 200:
             return resp.json()
-        return resp.text
+        return resp.raise_for_status()
 
-    def get_payment_status(self, payment_id: int) -> str:
+    def get_payment_status(self, payment_id: int) -> Any:
         """
         Get the actual information about the payment.
 
@@ -179,11 +180,11 @@ class NOWPayments:
         resp: Response = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
-        return resp.text
+        return resp.raise_for_status()
 
     def get_minimum_payment_amount(
             self, currency_from: str, currency_to: str = None
-    ) -> str:
+    ) -> Any:
         """
         Get the minimum payment amount for a specific pair.
 
@@ -195,4 +196,4 @@ class NOWPayments:
         resp = requests.get(url)
         if resp.status_code == 200:
             return resp.json()
-        return resp.text
+        return resp.raise_for_status()
