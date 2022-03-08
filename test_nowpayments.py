@@ -2,8 +2,6 @@
 import os
 import pytest
 from requests.exceptions import HTTPError
-
-import nowpayments
 from src.nowpayments import NOWPayments
 
 
