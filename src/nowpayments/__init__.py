@@ -62,7 +62,9 @@ class NOWPayments:
         resp = requests.get(url)
         if resp.status_code == 200:
             return resp.json()
-        raise HTTPError(f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}')
+        raise HTTPError(
+            f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
+        )
 
     def get_available_currencies(self) -> Any:
         """
@@ -74,7 +76,9 @@ class NOWPayments:
         resp = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
-        raise HTTPError(f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}')
+        raise HTTPError(
+            f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
+        )
 
     def get_available_checked_currencies(self) -> Any:
         """
@@ -87,10 +91,12 @@ class NOWPayments:
         resp = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
-        raise HTTPError(f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}')
+        raise HTTPError(
+            f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
+        )
 
     def get_estimate_price(
-            self, amount: float, currency_from: str, currency_to: str
+        self, amount: float, currency_from: str, currency_to: str
     ) -> Any:
         """This is a method for calculating the approximate price in cryptocurrency
         for a given value in Fiat currency. You will need to provide the initial cost
@@ -109,10 +115,12 @@ class NOWPayments:
         resp: Response = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
-        raise HTTPError(f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}')
+        raise HTTPError(
+            f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
+        )
 
     def create_payment(
-            self, price_amount: float, price_currency: str, pay_currency: str, **kwargs: Any
+        self, price_amount: float, price_currency: str, pay_currency: str, **kwargs: Any
     ) -> Any:
         """
         With this method, your customer will be able to complete the payment without leaving
@@ -157,15 +165,17 @@ class NOWPayments:
             "payout_extra_id": None,
             "fixed_rate": None,
         }
-        data.update(kwargs)
+        data.update(**kwargs)
         if len(data) != 12:
             raise TypeError("create_payment() got an unexpected keyword argument")
 
         url = self.get_url(endpoint)
         resp = self.post_requests(url, data=data)
-        if resp.status_code == 200:
+        if resp.status_code == 201:
             return resp.json()
-        raise HTTPError(f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}')
+        raise HTTPError(
+            f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
+        )
 
     def get_payment_status(self, payment_id: int) -> Any:
         """
@@ -178,10 +188,12 @@ class NOWPayments:
         resp: Response = self.get_requests(url)
         if resp.status_code == 200:
             return resp.json()
-        raise HTTPError(f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}')
+        raise HTTPError(
+            f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
+        )
 
     def get_minimum_payment_amount(
-            self, currency_from: str, currency_to: str = None
+        self, currency_from: str, currency_to: str = None
     ) -> Any:
         """
         Get the minimum payment amount for a specific pair.
@@ -194,4 +206,6 @@ class NOWPayments:
         resp = requests.get(url)
         if resp.status_code == 200:
             return resp.json()
-        raise HTTPError(f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}')
+        raise HTTPError(
+            f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
+        )
