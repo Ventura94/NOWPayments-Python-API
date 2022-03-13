@@ -12,8 +12,7 @@ def now_payments() -> NOWPayments:
     NOWPayments class fixture.
     :return: NOWPayments class.
     """
-    return NOWPayments("005D77S-WM24Z3A-Q0RQHM9-1FS3HH5")
-    # return NOWPayments(key=os.environ["API_KEY"])
+    return NOWPayments(key=os.environ["API_KEY"])
 
 
 def test_api_url_param(
