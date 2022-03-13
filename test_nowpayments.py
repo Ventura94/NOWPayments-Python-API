@@ -7,36 +7,59 @@ from src.nowpayments import NOWPayments
 
 
 @pytest.fixture
-def now_payments():
-    return NOWPayments(key=os.environ["API_KEY"])
+def now_payments() -> NOWPayments:
+    """
+    NOWPayments class fixture.
+    :return: NOWPayments class.
+    """
+    return NOWPayments("005D77S-WM24Z3A-Q0RQHM9-1FS3HH5")
+    # return NOWPayments(key=os.environ["API_KEY"])
 
 
-def test_api_url_param(now_payments: NOWPayments) -> None:
+def test_api_url_param(
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+) -> None:
+    """
+    API url param test
+    :param now_payments: NOWPayments class fixture
+    :return:
+    """
     assert now_payments.API_URL == "https://api.nowpayments.io/v1/{}"
 
 
-def test_estimate_amount_url_param(now_payments: NOWPayments) -> None:
+def test_estimate_amount_url_param(
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+) -> None:
+    """
+    Estimate amount url param test.
+    """
     assert (
         now_payments.ESTIMATE_AMOUNT_URL
         == "estimate?amount={}&currency_from={}&currency_to={}"
     )
 
 
-def test_min_amount_url_param(now_payments: NOWPayments) -> None:
+def test_min_amount_url_param(
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+) -> None:
     """
     Min amount url param test.
     """
     assert now_payments.MIN_AMOUNT_URL == "min-amount?currency_from={}&currency_to={}"
 
 
-def test_get_url(now_payments: NOWPayments) -> None:
+def test_get_url(
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+) -> None:
     """
     Get URL test
     """
     assert now_payments.get_url("endpoint") == "https://api.nowpayments.io/v1/endpoint"
 
 
-def test_get_requests(now_payments: NOWPayments) -> None:
+def test_get_requests(
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+) -> None:
     """
     Get request test
     """
@@ -45,7 +68,10 @@ def test_get_requests(now_payments: NOWPayments) -> None:
     assert response.status_code == 200
 
 
-def test_get_api_status(now_payments: NOWPayments, mocker: MockerFixture) -> None:
+def test_get_api_status(
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+    mocker: MockerFixture,
+) -> None:
     """
     Get api status test
     """
@@ -59,7 +85,8 @@ def test_get_api_status(now_payments: NOWPayments, mocker: MockerFixture) -> Non
 
 
 def test_get_available_currencies(
-    now_payments: NOWPayments, mocker: MockerFixture
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+    mocker: MockerFixture,
 ) -> None:
     """
     Get available currencies test.
@@ -77,7 +104,8 @@ def test_get_available_currencies(
 
 
 def test_get_available_checked_currencies(
-    now_payments: NOWPayments, mocker: MockerFixture
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+    mocker: MockerFixture,
 ) -> None:
     """
     Get available checked currencies test
@@ -92,7 +120,10 @@ def test_get_available_checked_currencies(
     assert result.get("selectedCurrencies", "Not found") != "Not found"
 
 
-def test_get_estimate_price(now_payments: NOWPayments, mocker: MockerFixture) -> None:
+def test_get_estimate_price(
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+    mocker: MockerFixture,
+) -> None:
     """
     Get estimate price test.
     """
@@ -110,7 +141,8 @@ def test_get_estimate_price(now_payments: NOWPayments, mocker: MockerFixture) ->
 
 
 def test_get_estimate_price_error(
-    now_payments: NOWPayments, mocker: MockerFixture
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+    mocker: MockerFixture,
 ) -> None:
     """
     Get estimate price test with error.
@@ -129,7 +161,7 @@ def test_get_estimate_price_error(
 
 
 def test_create_payment_unexpected_keyword_argument_error(
-    now_payments: NOWPayments,
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
 ) -> None:
     """
     Create payment test with unexpected keyword argument error
@@ -143,7 +175,10 @@ def test_create_payment_unexpected_keyword_argument_error(
         )
 
 
-def test_create_payment(now_payments: NOWPayments, mocker: MockerFixture) -> None:
+def test_create_payment(
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+    mocker: MockerFixture,
+) -> None:
     """
     Create payment test
     """
@@ -160,7 +195,8 @@ def test_create_payment(now_payments: NOWPayments, mocker: MockerFixture) -> Non
 
 
 def test_create_payment_with_argument(
-    now_payments: NOWPayments, mocker: MockerFixture
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+    mocker: MockerFixture,
 ) -> None:
     """
     Create payment test with argument
@@ -181,7 +217,8 @@ def test_create_payment_with_argument(
 
 
 def test_create_payment_with_error(
-    now_payments: NOWPayments, mocker: MockerFixture
+    now_payments: NOWPayments,  # pylint: disable=redefined-outer-name
+    mocker: MockerFixture,
 ) -> None:
     """
     Create payment test with error

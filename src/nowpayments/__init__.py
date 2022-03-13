@@ -1,7 +1,7 @@
 """
 A Python wrapper for the NOWPayments API.
 """
-from typing import Any
+from typing import Any, Dict, Union
 
 import requests
 from requests import Response
@@ -23,6 +23,7 @@ class NOWPayments:
 
         :param str key: API key
         """
+        self.session = requests.Session()
         self.key = key
 
     def get_url(self, endpoint: str) -> str:
@@ -40,9 +41,9 @@ class NOWPayments:
         :param str url: URL to which the request is made
         """
         headers = {"x-api-key": self.key}
-        return requests.get(url=url, headers=headers)
+        return self.session.get(url=url, headers=headers)
 
-    def post_requests(self, url: str, data: dict = None) -> Response:
+    def post_requests(self, url: str, data: Dict = None) -> Response:
         """
         Make get requests with your header and data
 
@@ -50,9 +51,9 @@ class NOWPayments:
         :param data: Data to which the request is made
         """
         headers = {"x-api-key": self.key}
-        return requests.post(url=url, headers=headers, data=data)
+        return self.session.post(url=url, headers=headers, data=data)
 
-    def get_api_status(self) -> Any:
+    def get_api_status(self) -> Dict:
         """
         This is a method to get information about the current state of the API. If everything
         is OK, you will receive an "OK" message. Otherwise, you'll see some error.
@@ -66,7 +67,7 @@ class NOWPayments:
             f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
         )
 
-    def get_available_currencies(self) -> Any:
+    def get_available_currencies(self) -> Dict:
         """
         This is a method for obtaining information about all cryptocurrencies available for
         payments.
@@ -80,7 +81,7 @@ class NOWPayments:
             f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
         )
 
-    def get_available_checked_currencies(self) -> Any:
+    def get_available_checked_currencies(self) -> Dict:
         """
         This is a method for obtaining information about the cryptocurrencies available
          for payments. Shows the coins you set as available for payments in the "coins settings"
@@ -97,7 +98,7 @@ class NOWPayments:
 
     def get_estimate_price(
         self, amount: float, currency_from: str, currency_to: str
-    ) -> Any:
+    ) -> Dict:
         """This is a method for calculating the approximate price in cryptocurrency
         for a given value in Fiat currency. You will need to provide the initial cost
          in the Fiat currency (amount, currency_from) and the necessary cryptocurrency
@@ -120,8 +121,12 @@ class NOWPayments:
         )
 
     def create_payment(
-        self, price_amount: float, price_currency: str, pay_currency: str, **kwargs: Any
-    ) -> Any:
+        self,
+        price_amount: float,
+        price_currency: str,
+        pay_currency: str,
+        **kwargs: Union[str, float, bool, int],
+    ) -> Dict:
         """
         With this method, your customer will be able to complete the payment without leaving
         your website.
