@@ -10,7 +10,7 @@ class NOWPaymentsSandbox(NOWPayments):
     """
 
     ### This has recently been changed from https://api.sandbox.nowpayments.io/v1/ to this.
-    API_URL = "https://api-sandbox.nowpayments.io/v1/"
+    API_URL = "https://api-sandbox.nowpayments.io/v1/{}"
 
     def create_payment(
         self,
