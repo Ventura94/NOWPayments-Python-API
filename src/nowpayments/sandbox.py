@@ -1,6 +1,8 @@
 """
 A Python wrapper for the NOWPayments API Sandbox.
 """
+from typing import Union, Dict
+from requests.exceptions import HTTPError
 from nowpayments import NOWPayments
 
 
@@ -9,7 +11,7 @@ class NOWPaymentsSandbox(NOWPayments):
     Class to used for the NOWPayments API Sandbox.
     """
 
-    ### This has recently been changed from https://api.sandbox.nowpayments.io/v1/ to this.
+    # This has recently been changed from https://api.sandbox.nowpayments.io/v1/ to this.
     API_URL = "https://api-sandbox.nowpayments.io/v1/{}"
 
     def create_payment(
@@ -47,7 +49,7 @@ class NOWPaymentsSandbox(NOWPayments):
 
         :param bool fixed_rate: Required for fixed-rate exchanges.
 
-        :param str case: Used to change the outcome of the payment, defaults to "success" other options are "fail" and "partially_paid"
+        :param str case: Used to change the outcome of the payment, defaults to "success". other options are "fail" and "partially_paid"
 
         refer to https://documenter.getpostman.com/view/7907941/T1LSCRHC
         """
@@ -65,11 +67,12 @@ class NOWPaymentsSandbox(NOWPayments):
             "payout_currency": None,
             "payout_extra_id": None,
             "fixed_rate": None,
-            "case": "success"
+            "case": "success",
         }
         data.update(**kwargs)
         if len(data) != 13:
-            raise TypeError("create_payment() got an unexpected keyword argument")
+            raise TypeError(
+                "create_payment() got an unexpected keyword argument")
 
         url = self.get_url(endpoint)
         resp = self.post_requests(url, data=data)

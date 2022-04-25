@@ -3,7 +3,7 @@ import os
 import pytest
 from pytest_mock.plugin import MockerFixture
 from requests.exceptions import HTTPError
-from src.nowpayments import NOWPayments
+from nowpayments import NOWPayments
 
 
 @pytest.fixture
