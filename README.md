@@ -16,7 +16,7 @@ The api call descriptions are from the official documentation.
 ## Getting Started
 Before using the NOWPayments API, sign up for a [API key here](https://nowpayments.io/).
 
-If you want to use the Sandbox, request your [API key here](https://account.sandbox.nowpayments.io/).
+If you want to use the Sandbox, request your [API key here](https://account-sandbox.nowpayments.io/).
 
 
 To install the wrapper, enter the following into the terminal.
@@ -38,6 +38,3 @@ payment = NOWPaymentsSandbox("SANDBOX_API_KEY")
 
 status = payment.get_api_status()
 ```
-
-
-
