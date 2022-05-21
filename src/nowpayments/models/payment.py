@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class PaymentData:
+class PaymentData:  # pylint: disable=too-many-instance-attributes
     """
     The PaymentData class is a container for the data that is used to make a payment.
     """
