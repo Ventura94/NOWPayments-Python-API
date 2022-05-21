@@ -6,6 +6,7 @@ from typing import Any, Dict, Union
 import requests
 from requests import Response
 from requests.exceptions import HTTPError
+from nowpayments.models.payment import PaymentData
 
 
 class NOWPayments:
@@ -16,6 +17,7 @@ class NOWPayments:
     API_URL = "https://api.nowpayments.io/v1/{}"
     ESTIMATE_AMOUNT_URL = "estimate?amount={}&currency_from={}&currency_to={}"
     MIN_AMOUNT_URL = "min-amount?currency_from={}&currency_to={}"
+    IS_SANDBOX = False
 
     def __init__(self, key: str) -> None:
         """
@@ -120,6 +122,27 @@ class NOWPayments:
             f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
         )
 
+    @staticmethod
+    def __data_payment(
+        price_amount: float,
+        price_currency: str,
+        pay_currency: str,
+    ) -> Dict:
+        return {
+            "price_amount": price_amount,
+            "price_currency": price_currency,
+            "pay_amount": None,
+            "pay_currency": pay_currency,
+            "ipn_callback_url": None,
+            "order_id": None,
+            "order_description": None,
+            "buy_id": None,
+            "payout_address": None,
+            "payout_currency": None,
+            "payout_extra_id": None,
+            "fixed_rate": None,
+        }
+
     def create_payment(
         self,
         price_amount: float,
@@ -156,26 +179,16 @@ class NOWPayments:
         :param bool fixed_rate: Required for fixed-rate exchanges.
         """
         endpoint = "payment"
-        data = {
-            "price_amount": price_amount,
-            "price_currency": price_currency,
-            "pay_amount": None,
-            "pay_currency": pay_currency,
-            "ipn_callback_url": None,
-            "order_id": None,
-            "order_description": None,
-            "buy_id": None,
-            "payout_address": None,
-            "payout_currency": None,
-            "payout_extra_id": None,
-            "fixed_rate": None,
-        }
-        data.update(**kwargs)
-        if len(data) != 12:
-            raise TypeError("create_payment() got an unexpected keyword argument")
-
+        data = PaymentData(
+            price_amount=price_amount,
+            price_currency=price_currency,
+            pay_currency=pay_currency,
+            **kwargs,
+        )
         url = self.get_url(endpoint)
-        resp = self.post_requests(url, data=data)
+        resp = self.post_requests(
+            url, data=data.clean_data_to_dict(is_sandbox=self.IS_SANDBOX)
+        )
         if resp.status_code == 201:
             return resp.json()
         raise HTTPError(
