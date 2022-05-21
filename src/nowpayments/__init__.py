@@ -99,7 +99,7 @@ class NOWPayments:
         )
 
     def get_estimate_price(
-        self, amount: float, currency_from: str, currency_to: str
+            self, amount: float, currency_from: str, currency_to: str
     ) -> Dict:
         """This is a method for calculating the approximate price in cryptocurrency
         for a given value in Fiat currency. You will need to provide the initial cost
@@ -122,33 +122,12 @@ class NOWPayments:
             f'Error {resp.status_code}: {resp.json().get("message", "Not descriptions")}'
         )
 
-    @staticmethod
-    def __data_payment(
-        price_amount: float,
-        price_currency: str,
-        pay_currency: str,
-    ) -> Dict:
-        return {
-            "price_amount": price_amount,
-            "price_currency": price_currency,
-            "pay_amount": None,
-            "pay_currency": pay_currency,
-            "ipn_callback_url": None,
-            "order_id": None,
-            "order_description": None,
-            "buy_id": None,
-            "payout_address": None,
-            "payout_currency": None,
-            "payout_extra_id": None,
-            "fixed_rate": None,
-        }
-
     def create_payment(
-        self,
-        price_amount: float,
-        price_currency: str,
-        pay_currency: str,
-        **kwargs: Union[str, float, bool, int],
+            self,
+            price_amount: float,
+            price_currency: str,
+            pay_currency: str,
+            **kwargs: Union[str, float, bool, int],
     ) -> Dict:
         """
         With this method, your customer will be able to complete the payment without leaving
@@ -211,7 +190,7 @@ class NOWPayments:
         )
 
     def get_minimum_payment_amount(
-        self, currency_from: str, currency_to: str = None
+            self, currency_from: str, currency_to: str = None
     ) -> Any:
         """
         Get the minimum payment amount for a specific pair.
