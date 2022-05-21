@@ -71,8 +71,7 @@ class NOWPaymentsSandbox(NOWPayments):
         }
         data.update(**kwargs)
         if len(data) != 13:
-            raise TypeError(
-                "create_payment() got an unexpected keyword argument")
+            raise TypeError("create_payment() got an unexpected keyword argument")
 
         url = self.get_url(endpoint)
         resp = self.post_requests(url, data=data)
