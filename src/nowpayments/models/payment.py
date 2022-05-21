@@ -7,10 +7,11 @@ from dataclasses import dataclass
 
 
 @dataclass
-class PaymentData:
+class PaymentData:  # pylint: disable=too-many-instance-attributes
     """
     The PaymentData class is a container for the data that is used to make a payment.
     """
+
     price_amount: float
     price_currency: str
     pay_amount: float
@@ -26,7 +27,7 @@ class PaymentData:
     case: str
 
     def clean_data_to_dict(
-            self, is_sandbox: bool = False
+        self, is_sandbox: bool = False
     ) -> Dict[str, Union[str, float, int]]:
         """
         Delete None types and return dictionary
