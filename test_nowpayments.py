@@ -25,7 +25,7 @@ def test_api_url_param(
     :param now_payments: NOWPayments class fixture
     :return:
     """
-    assert now_payments.API_URL == "https://api.nowpayments.io/v1/{}"
+    assert now_payments._API_URL == "https://api.nowpayments.io/v1/{}"
 
 
 def test_estimate_amount_url_param(
@@ -35,7 +35,7 @@ def test_estimate_amount_url_param(
     Estimate amount url param test.
     """
     assert (
-        now_payments.ESTIMATE_AMOUNT_URL
+        now_payments._ESTIMATE_AMOUNT_URL
         == "estimate?amount={}&currency_from={}&currency_to={}"
     )
 
@@ -46,7 +46,7 @@ def test_min_amount_url_param(
     """
     Min amount url param test.
     """
-    assert now_payments.MIN_AMOUNT_URL == "min-amount?currency_from={}&currency_to={}"
+    assert now_payments._MIN_AMOUNT_URL == "min-amount?currency_from={}&currency_to={}"
 
 
 def test_get_url(
@@ -55,7 +55,7 @@ def test_get_url(
     """
     Get URL test
     """
-    assert now_payments.get_url("endpoint") == "https://api.nowpayments.io/v1/endpoint"
+    assert now_payments._get_url("endpoint") == "https://api.nowpayments.io/v1/endpoint"
 
 
 def test_get_requests(
@@ -65,7 +65,7 @@ def test_get_requests(
     Get request test
     """
 
-    response = now_payments.get_requests("https://api.nowpayments.io/v1/status")
+    response = now_payments._get_requests("https://api.nowpayments.io/v1/status")
     assert response.status_code == 200
 
 
@@ -78,7 +78,7 @@ def test_get_api_status(
     """
     mocker.patch.object(
         NOWPayments,
-        "get_url",
+        "_get_url",
         return_value="https://api.nowpayments.io/v1/status",
         autospec=True,
     )
@@ -94,7 +94,7 @@ def test_get_available_currencies(
     """
     mocker.patch.object(
         NOWPayments,
-        "get_url",
+        "_get_url",
         return_value="https://api.nowpayments.io/v1/currencies",
         autospec=True,
     )
@@ -113,7 +113,7 @@ def test_get_available_checked_currencies(
     """
     mocker.patch.object(
         NOWPayments,
-        "get_url",
+        "_get_url",
         return_value="https://api.nowpayments.io/v1/merchant/coins",
         autospec=True,
     )
@@ -130,7 +130,7 @@ def test_get_estimate_price(
     """
     mocker.patch.object(
         NOWPayments,
-        "get_url",
+        "_get_url",
         return_value="https://api.nowpayments.io/v1/estimate?amount=\
         100&currency_from=usd&currency_to=btc",
         autospec=True,
@@ -150,7 +150,7 @@ def test_get_estimate_price_error(
     """
     mocker.patch.object(
         NOWPayments,
-        "get_url",
+        "_get_url",
         return_value="https://api.nowpayments.io/v1/estimate?amount=\
         100&currency_from=cup&currency_to=btc",
         autospec=True,
@@ -185,7 +185,7 @@ def test_create_payment(
     """
     mocker.patch.object(
         NOWPayments,
-        "get_url",
+        "_get_url",
         return_value="https://api.nowpayments.io/v1/payment",
         autospec=True,
     )
@@ -204,7 +204,7 @@ def test_create_payment_with_argument(
     """
     mocker.patch.object(
         NOWPayments,
-        "get_url",
+        "_get_url",
         return_value="https://api.nowpayments.io/v1/payment",
         autospec=True,
     )
@@ -226,7 +226,7 @@ def test_create_payment_with_error(
     """
     mocker.patch.object(
         NOWPayments,
-        "get_url",
+        "_get_url",
         return_value="https://api.nowpayments.io/v1/payment",
         autospec=True,
     )
