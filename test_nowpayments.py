@@ -26,8 +26,9 @@ def test_api_url_param(
     :return:
     """
     assert (
-        now_payments._API_URL == "https://api.nowpayments.io/v1/{}"
-    )  # pylint: disable=protected-access
+        now_payments._API_URL  # pylint: disable=protected-access
+        == "https://api.nowpayments.io/v1/{}"
+    )
 
 
 def test_estimate_amount_url_param(
@@ -49,8 +50,9 @@ def test_min_amount_url_param(
     Min amount url param test.
     """
     assert (
-        now_payments._MIN_AMOUNT_URL == "min-amount?currency_from={}&currency_to={}"
-    )  # pylint: disable=protected-access
+        now_payments._MIN_AMOUNT_URL  # pylint: disable=protected-access
+        == "min-amount?currency_from={}&currency_to={}"
+    )
 
 
 def test_get_url(
@@ -60,8 +62,9 @@ def test_get_url(
     Get URL test
     """
     assert (
-        now_payments._get_url("endpoint") == "https://api.nowpayments.io/v1/endpoint"
-    )  # pylint: disable=protected-access
+        now_payments._get_url("endpoint")  # pylint: disable=protected-access
+        == "https://api.nowpayments.io/v1/endpoint"
+    )
 
 
 def test_get_requests(
@@ -71,9 +74,9 @@ def test_get_requests(
     Get request test
     """
 
-    response = now_payments._get_requests(
+    response = now_payments._get_requests(  # pylint: disable=protected-access
         "https://api.nowpayments.io/v1/status"
-    )  # pylint: disable=protected-access
+    )
     assert response.status_code == 200
 
 
