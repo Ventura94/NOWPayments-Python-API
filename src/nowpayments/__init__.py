@@ -14,10 +14,10 @@ class NOWPayments:
     Class to used for the NOWPayments API.
     """
 
-    API_URL = "https://api.nowpayments.io/v1/{}"
-    ESTIMATE_AMOUNT_URL = "estimate?amount={}&currency_from={}&currency_to={}"
-    MIN_AMOUNT_URL = "min-amount?currency_from={}&currency_to={}"
-    IS_SANDBOX = False
+    _API_URL = "https://api.nowpayments.io/v1/{}"
+    _ESTIMATE_AMOUNT_URL = "estimate?amount={}&currency_from={}&currency_to={}"
+    _MIN_AMOUNT_URL = "min-amount?currency_from={}&currency_to={}"
+    _IS_SANDBOX = False
 
     def __init__(self, key: str) -> None:
         """
@@ -28,15 +28,15 @@ class NOWPayments:
         self.session = requests.Session()
         self.key = key
 
-    def get_url(self, endpoint: str) -> str:
+    def _get_url(self, endpoint: str) -> str:
         """
         Set the url to be used
 
         :param str endpoint: Endpoint to be used
         """
-        return self.API_URL.format(endpoint)
+        return self._API_URL.format(endpoint)
 
-    def get_requests(self, url: str) -> Response:
+    def _get_requests(self, url: str) -> Response:
         """
         Make get requests with your header
 
@@ -45,7 +45,7 @@ class NOWPayments:
         headers = {"x-api-key": self.key}
         return self.session.get(url=url, headers=headers)
 
-    def post_requests(self, url: str, data: Dict = None) -> Response:
+    def _post_requests(self, url: str, data: Dict = None) -> Response:
         """
         Make get requests with your header and data
 
@@ -61,7 +61,7 @@ class NOWPayments:
         is OK, you will receive an "OK" message. Otherwise, you'll see some error.
         """
         endpoint = "status"
-        url = self.get_url(endpoint)
+        url = self._get_url(endpoint)
         resp = requests.get(url)
         if resp.status_code == 200:
             return resp.json()
@@ -75,8 +75,8 @@ class NOWPayments:
         payments.
         """
         endpoint = "currencies"
-        url = self.get_url(endpoint)
-        resp = self.get_requests(url)
+        url = self._get_url(endpoint)
+        resp = self._get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         raise HTTPError(
@@ -90,8 +90,8 @@ class NOWPayments:
           tab on your personal account.
         """
         endpoint = "merchant/coins"
-        url = self.get_url(endpoint)
-        resp = self.get_requests(url)
+        url = self._get_url(endpoint)
+        resp = self._get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         raise HTTPError(
@@ -113,9 +113,9 @@ class NOWPayments:
 
          :param  str currency_to: Cryptocurrency.
         """
-        endpoint = self.ESTIMATE_AMOUNT_URL.format(amount, currency_from, currency_to)
-        url = self.get_url(endpoint)
-        resp: Response = self.get_requests(url)
+        endpoint = self._ESTIMATE_AMOUNT_URL.format(amount, currency_from, currency_to)
+        url = self._get_url(endpoint)
+        resp: Response = self._get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         raise HTTPError(
@@ -164,9 +164,9 @@ class NOWPayments:
             pay_currency=pay_currency,
             **kwargs,
         )
-        url = self.get_url(endpoint)
-        resp = self.post_requests(
-            url, data=data.clean_data_to_dict(is_sandbox=self.IS_SANDBOX)
+        url = self._get_url(endpoint)
+        resp = self._post_requests(
+            url, data=data.clean_data_to_dict(is_sandbox=self._IS_SANDBOX)
         )
         if resp.status_code == 201:
             return resp.json()
@@ -181,8 +181,8 @@ class NOWPayments:
         :param int payment_id: ID of the payment in the request.
         """
         endpoint = f"payment/{payment_id}"
-        url = self.get_url(endpoint)
-        resp: Response = self.get_requests(url)
+        url = self._get_url(endpoint)
+        resp: Response = self._get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         raise HTTPError(
@@ -198,8 +198,8 @@ class NOWPayments:
         :param currency_from: Currency from
         :param currency_to: Currency to
         """
-        endpoint = self.MIN_AMOUNT_URL.format(currency_from, currency_to)
-        url = self.get_url(endpoint)
+        endpoint = self._MIN_AMOUNT_URL.format(currency_from, currency_to)
+        url = self._get_url(endpoint)
         resp = requests.get(url)
         if resp.status_code == 200:
             return resp.json()
