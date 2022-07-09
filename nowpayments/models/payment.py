@@ -27,7 +27,7 @@ class PaymentData:  # pylint: disable=too-many-instance-attributes
     case: str = None
 
     def clean_data_to_dict(
-            self, is_sandbox: bool = False
+        self, is_sandbox: bool = False
     ) -> Dict[str, Union[str, float, int]]:
         """
         Delete None types and return dictionary
@@ -36,10 +36,6 @@ class PaymentData:  # pylint: disable=too-many-instance-attributes
         for field in signature(self.__class__).parameters:
             if getattr(self, field):
                 data[field] = getattr(self, field)
-            #else:
-            #    data[field] = None
-        if is_sandbox and data.get("case") is None:
+        if is_sandbox and self.case is None:
             data["case"] = "success"
-        else:
-            del data["case"]
         return data
