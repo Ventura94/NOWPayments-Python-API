@@ -34,7 +34,7 @@ status = payment.get_api_status()
 Sandbox is used in the same way in correspondence with the documentation as follows.
 
 ```python
-from nowpayments.sandbox import NOWPaymentsSandbox
+from nowpayments import NOWPaymentsSandbox
 
 payment = NOWPaymentsSandbox("SANDBOX_API_KEY")
 
