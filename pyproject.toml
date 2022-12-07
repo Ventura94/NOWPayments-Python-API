@@ -5,7 +5,7 @@ description = "A Python wrapper for the NOWPayments API"
 authors = ["Arian Ventura Rodríguez <arianventura94@gmail.com>"]
 readme = "README.md"
 repository = "https://github.com/Ventura94/FastAPICookie"
-license = "Apache-2.0"
+license = "MIT"
 
 
 [tool.poetry.dependencies]
