@@ -10,5 +10,5 @@ class NOWPaymentsSandbox(NOWPayments):
     """
 
     # This has recently been changed from https://api.sandbox.nowpayments.io/v1/ to this.
-    API_URL = "https://api-sandbox.nowpayments.io/v1/{}"
-    IS_SANDBOX = True
+    _API_URL = "https://api-sandbox.nowpayments.io/v1/{}"
+    _IS_SANDBOX = True
