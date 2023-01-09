@@ -1,10 +1,10 @@
 [tool.poetry]
 name = "nowpayments"
-version = "1.3.0"
+version = "1.3.2"
 description = "A Python wrapper for the NOWPayments API"
 authors = ["Arian Ventura Rodríguez <arianventura94@gmail.com>"]
 readme = "README.md"
-repository = "https://github.com/Ventura94/FastAPICookie"
+repository = "https://github.com/Ventura94/NOWPayments-Python-API"
 license = "MIT"
 
 
