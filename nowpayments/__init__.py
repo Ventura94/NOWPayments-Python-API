@@ -200,7 +200,7 @@ class NOWPayments:
         """
         endpoint = self._MIN_AMOUNT_URL.format(currency_from, currency_to)
         url = self._get_url(endpoint)
-        resp = requests.get(url)
+        resp: Response = self._get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         raise HTTPError(
