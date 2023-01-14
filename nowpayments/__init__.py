@@ -16,7 +16,7 @@ class NOWPayments:
 
     _API_URL = "https://api.nowpayments.io/v1/{}"
     _ESTIMATE_AMOUNT_URL = "estimate?amount={}&currency_from={}&currency_to={}"
-    _MIN_AMOUNT_URL = "min-amount?currency_from={}&currency_to={}"
+    _MIN_AMOUNT_URL = "min-amount?currency_from={}"
     _IS_SANDBOX = False
 
     def __init__(self, key: str) -> None:
@@ -190,7 +190,7 @@ class NOWPayments:
         )
 
     def get_minimum_payment_amount(
-            self, currency_from: str, currency_to: str = None
+            self, currency_from: str, currency_to: str = None, fiat_equivalent: str = None
     ) -> Any:
         """
         Get the minimum payment amount for a specific pair.
@@ -198,9 +198,13 @@ class NOWPayments:
         :param currency_from: Currency from
         :param currency_to: Currency to
         """
-        endpoint = self._MIN_AMOUNT_URL.format(currency_from, currency_to)
+        endpoint = self._MIN_AMOUNT_URL.format(currency_from)
+        if currency_to is not None:
+            endpoint += f"&currency_to={currency_to}"
+        if fiat_equivalent is not None:
+            endpoint += f"&fiat_equivalent={fiat_equivalent}"
         url = self._get_url(endpoint)
-        resp = requests.get(url)
+        resp: Response = self._get_requests(url)
         if resp.status_code == 200:
             return resp.json()
         raise HTTPError(
